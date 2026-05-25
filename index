@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibliothèque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#141414;
+    --soft:#777;
+    --faint:#b8b8b8;
+    --line:#ececec;
+    --over:rgba(18,18,18,.9);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Schibsted Grotesk",system-ui,sans-serif;
+    font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+
+  /* ---------- En-tête minimal ---------- */
+  header{padding:46px 0 0}
+  .title{
+    font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;
+    font-weight:500;margin:0;
+  }
+
+  /* ---------- Barre d'outils discrète ---------- */
+  .bar{
+    position:sticky;top:0;z-index:20;background:var(--bg);
+    border-bottom:1px solid var(--line);
+    margin-top:30px;
+  }
+  .bar-inner{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px 26px;
+    padding:16px 0;
+  }
+  .search{position:relative;flex:1 1 200px;min-width:160px;display:flex;align-items:center}
+  .search svg{width:15px;height:15px;stroke:var(--faint);position:absolute;left:0;pointer-events:none}
+  .search input{
+    width:100%;border:none;background:none;font-family:inherit;font-size:.92rem;color:var(--ink);
+    padding:6px 0 6px 24px;border-bottom:1px solid transparent;
+  }
+  .search input::placeholder{color:var(--faint)}
+  .search input:focus{outline:none;border-bottom-color:var(--ink)}
+  .ctrl{position:relative}
+  select{
+    appearance:none;border:none;background:none;font-family:inherit;cursor:pointer;
+    font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);
+    padding:6px 16px 6px 0;font-weight:500;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none' stroke='%23999' stroke-width='1.6'%3E%3Cpath d='M1 3l3.5 3.5L8 3'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right center;
+  }
+  select:focus{outline:none;color:var(--ink)}
+  select:hover{color:var(--ink)}
+  .pret{
+    font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);
+    font-weight:500;cursor:pointer;user-select:none;background:none;border:none;
+    font-family:inherit;padding:6px 0;display:inline-flex;align-items:center;gap:7px;
+  }
+  .pret .d{width:7px;height:7px;border-radius:50%;border:1px solid var(--soft);transition:.2s}
+  .pret:hover{color:var(--ink)}
+  .pret.on{color:var(--ink)}
+  .pret.on .d{background:var(--ink);border-color:var(--ink)}
+  .count{margin-left:auto;font-size:.72rem;letter-spacing:.12em;color:var(--faint);white-space:nowrap}
+
+  /* ---------- Grille de couvertures ---------- */
+  main{padding:40px 0 90px}
+  .grid{
+    display:grid;gap:40px 30px;
+    grid-template-columns:repeat(auto-fill,minmax(176px,1fr));
+  }
+  .item{
+    position:relative;cursor:pointer;
+    opacity:0;animation:fade .6s forwards;
+  }
+  @keyframes fade{to{opacity:1}}
+  .cover{
+    position:relative;aspect-ratio:2/3;overflow:hidden;background:#f3f2ef;
+    box-shadow:0 1px 2px rgba(0,0,0,.04);
+    transition:box-shadow .3s,transform .3s cubic-bezier(.2,.7,.3,1);
+  }
+  .item:hover .cover{box-shadow:0 18px 38px -16px rgba(0,0,0,.4);transform:translateY(-3px)}
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* repli sans image — sobre, monochrome */
+  .fallback{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:22px 18px;background:#f3f2ef;
+  }
+  .fallback::after{content:"";position:absolute;inset:9px;border:1px solid rgba(20,20,20,.14)}
+  .fallback .ft{font-size:1rem;font-weight:500;line-height:1.22;color:#2a2a2a}
+  .fallback .fa{margin-top:9px;font-size:.78rem;font-style:italic;color:#888}
+
+  /* survol — révèle les détails */
+  .hover{
+    position:absolute;inset:0;background:var(--over);color:#fff;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:18px 16px;opacity:0;transition:opacity .28s;
+  }
+  .item:hover .hover{opacity:1}
+  .hv-mark{
+    position:absolute;top:14px;left:16px;right:16px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);
+  }
+  .hv-mark .dot{display:inline-flex;align-items:center;gap:6px;color:#fff}
+  .hv-mark .dot::before{content:"";width:5px;height:5px;border-radius:50%;background:#fff}
+  .hv-type{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:7px}
+  .hv-title{font-size:1.12rem;font-weight:500;line-height:1.15;margin:0}
+  .hv-auth{font-size:.86rem;font-style:italic;color:rgba(255,255,255,.78);margin:5px 0 0}
+  .hv-meta{font-size:.7rem;letter-spacing:.04em;color:rgba(255,255,255,.5);margin:11px 0 0}
+
+  /* ---------- Aucun résultat ---------- */
+  .empty{grid-column:1/-1;text-align:center;padding:90px 0;color:var(--faint);font-size:.92rem;letter-spacing:.02em}
+
+  /* ---------- Vue détaillée (mobile + clic) ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(255,255,255,.97);
+    display:none;align-items:center;justify-content:center;z-index:60;padding:36px;
+  }
+  .overlay.open{display:flex;animation:ov .25s}
+  @keyframes ov{from{opacity:0}to{opacity:1}}
+  .sheet{
+    display:flex;gap:42px;max-width:860px;width:100%;align-items:center;
+    animation:up .32s cubic-bezier(.2,.7,.3,1);
+  }
+  @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .sheet-cover{flex:0 0 270px}
+  .sheet-cover .cover{aspect-ratio:2/3;box-shadow:0 24px 60px -24px rgba(0,0,0,.45)}
+  .sheet-info{flex:1 1 280px;max-width:380px}
+  .si-type{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
+  .si-title{font-size:1.8rem;font-weight:500;line-height:1.1;margin:0}
+  .si-auth{font-style:italic;color:var(--soft);font-size:1.05rem;margin:8px 0 0}
+  .si-meta{margin:22px 0 0;border-top:1px solid var(--line);padding-top:18px;font-size:.84rem}
+  .si-meta .r{display:flex;gap:16px;padding:5px 0}
+  .si-meta .k{min-width:78px;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);padding-top:3px}
+  .si-meta .v{color:var(--ink)}
+  .si-desc{margin:18px 0 0;color:#333;font-size:.95rem;line-height:1.6}
+  .si-pret{margin:18px 0 0;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .si-pret.no{color:var(--faint)}
+  .si-pret .d{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .si-act{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}
+  .btn{
+    font-family:inherit;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+    padding:12px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;
+    transition:.2s;border:1px solid var(--ink);
+  }
+  .btn-fill{background:var(--ink);color:#fff}
+  .btn-fill:hover{background:#000}
+  .btn-line{background:none;color:var(--ink)}
+  .btn-line:hover{background:var(--ink);color:#fff}
+  .close{
+    position:fixed;top:24px;right:30px;width:36px;height:36px;border:none;background:none;
+    cursor:pointer;font-size:26px;color:var(--ink);line-height:1;
+  }
+  .close:hover{color:var(--soft)}
+
+  @media(max-width:640px){
+    .wrap{padding:0 20px}
+    .grid{gap:28px 18px;grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+    .sheet{flex-direction:column;gap:26px;text-align:center;overflow-y:auto;max-height:88vh}
+    .sheet-cover{flex-basis:auto;width:190px}
+    .si-meta .r,.si-act,.si-pret{justify-content:center}
+    .si-info{max-width:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <h1 class="title">Bibliothèque partagée</h1>
+</header>
+
+<div class="bar">
+  <div class="wrap bar-inner">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Rechercher" aria-label="Rechercher">
+    </div>
+    <span class="ctrl"><select id="f-type" aria-label="Type"></select></span>
+    <span class="ctrl"><select id="f-domaine" aria-label="Domaine"></select></span>
+    <span class="ctrl"><select id="f-genre" aria-label="Genre"></select></span>
+    <span class="ctrl"><select id="f-auteur" aria-label="Auteur"></select></span>
+    <button class="pret" id="pret"><span class="d"></span>Empruntables</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+</main>
+
+<div class="overlay" id="overlay">
+  <button class="close" id="close" aria-label="Fermer">×</button>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  const DATA=(window.RESOURCES||[]).map((r,i)=>({...r,_i:i}));
+  const el=id=>document.getElementById(id);
+  const grid=el("grid"),overlay=el("overlay"),sheet=el("sheet");
+
+  const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+  const escA=s=>esc(s).replace(/"/g,"&quot;");
+
+  function uniq(k){const s=new Set();DATA.forEach(r=>{if(r[k])s.add(r[k])});return[...s].sort((a,b)=>a.localeCompare(b,"fr"))}
+  function fill(sel,label,vals){sel.innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option value="${escA(v)}">${esc(v)}</option>`).join("")}
+  fill(el("f-type"),"Type",uniq("type"));
+  fill(el("f-domaine"),"Domaine",uniq("domaine"));
+  fill(el("f-genre"),"Genre",uniq("genre"));
+  fill(el("f-auteur"),"Auteur",uniq("auteur"));
+
+  const state={q:"",type:"",domaine:"",genre:"",auteur:"",pret:false};
+
+  function coverInner(r){
+    if(r.couverture&&r.couverture.trim()){
+      return `<div class="fallback"><div class="ft">${esc(r.titre)}</div>${r.auteur?`<div class="fa">${esc(r.auteur)}</div>`:""}</div>
+        <img src="${escA(r.couverture)}" alt="${escA(r.titre)}" loading="lazy" onerror="this.remove()">`;
+    }
+    return `<div class="fallback"><div class="ft">${esc(r.titre)}</div>${r.auteur?`<div class="fa">${esc(r.auteur)}</div>`:""}</div>`;
+  }
+
+  function itemHtml(r){
+    const meta=[r.domaine,r.genre,r.annee].filter(Boolean).join("  ·  ");
+    return `<article class="item" data-i="${r._i}" tabindex="0" style="animation-delay:${Math.min(r._pos*45,500)}ms">
+      <div class="cover">${coverInner(r)}</div>
+      <div class="hover">
+        <div class="hv-mark">
+          <span>${r.type?esc(r.type):""}</span>
+          ${r.pretable?'<span class="dot">Empruntable</span>':''}
+        </div>
+        <div>
+          <h3 class="hv-title">${esc(r.titre)}</h3>
+          ${r.auteur?`<p class="hv-auth">${esc(r.auteur)}</p>`:""}
+          ${meta?`<p class="hv-meta">${esc(meta)}</p>`:""}
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function matches(r){
+    if(state.type&&r.type!==state.type)return false;
+    if(state.domaine&&r.domaine!==state.domaine)return false;
+    if(state.genre&&r.genre!==state.genre)return false;
+    if(state.auteur&&r.auteur!==state.auteur)return false;
+    if(state.pret&&!r.pretable)return false;
+    if(state.q){
+      const h=[r.titre,r.auteur,r.description,(r.sujets||[]).join(" "),r.domaine,r.genre,r.type].filter(Boolean).join(" ").toLowerCase();
+      if(!h.includes(state.q.toLowerCase()))return false;
+    }
+    return true;
+  }
+
+  function render(){
+    const list=DATA.filter(matches);
+    el("count").textContent=list.length?`${list.length} référence${list.length>1?"s":""}`:"";
+    if(!list.length){grid.innerHTML='<div class="empty">Aucune référence ne correspond.</div>';return}
+    list.forEach((r,p)=>r._pos=p);
+    grid.innerHTML=list.map(itemHtml).join("");
+  }
+
+  function contactBtn(r){
+    if(!r.contact)return"";
+    const c=r.contact.trim();
+    const mail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c), url=/^https?:\/\//i.test(c);
+    const label=r.pretable?"Demander à emprunter":"Prendre contact";
+    if(mail){const s=encodeURIComponent((r.pretable?"Demande de prêt : ":"Au sujet de : ")+r.titre);
+      return `<a class="btn btn-fill" href="mailto:${escA(c)}?subject=${s}">${label}</a>`}
+    if(url)return `<a class="btn btn-fill" href="${escA(c)}" target="_blank" rel="noopener">${label}</a>`;
+    return `<span class="btn btn-line" style="cursor:default">${esc(c)}</span>`;
+  }
+
+  function openSheet(r){
+    const rows=[
+      r.annee&&["Année",r.annee],
+      r.domaine&&["Domaine",r.domaine],
+      r.genre&&["Genre",r.genre],
+      (r.sujets&&r.sujets.length)&&["Sujets",r.sujets.join(", ")]
+    ].filter(Boolean).map(([k,v])=>`<div class="r"><span class="k">${k}</span><span class="v">${esc(String(v))}</span></div>`).join("");
+    const pret=r.pretable
+      ?`<div class="si-pret"><span class="d"></span>Disponible au prêt</div>`
+      :`<div class="si-pret no"><span class="d"></span>Consultation uniquement</div>`;
+    const consult=r.lien?`<a class="btn btn-line" href="${escA(r.lien)}" target="_blank" rel="noopener">Consulter</a>`:"";
+    const contact=contactBtn(r);
+    sheet.innerHTML=`
+      <div class="sheet-cover"><div class="cover">${coverInner(r)}</div></div>
+      <div class="sheet-info">
+        ${r.type?`<div class="si-type">${esc(r.type)}</div>`:""}
+        <h2 class="si-title">${esc(r.titre)}</h2>
+        ${r.auteur?`<p class="si-auth">${esc(r.auteur)}</p>`:""}
+        ${rows?`<div class="si-meta">${rows}</div>`:""}
+        ${r.description?`<p class="si-desc">${esc(r.description)}</p>`:""}
+        ${pret}
+        ${(contact||consult)?`<div class="si-act">${contact}${consult}</div>`:""}
+      </div>`;
+    overlay.classList.add("open");document.body.style.overflow="hidden";
+  }
+  function closeSheet(){overlay.classList.remove("open");document.body.style.overflow=""}
+
+  grid.addEventListener("click",e=>{const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])});
+  grid.addEventListener("keydown",e=>{if(e.key==="Enter"){const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])}});
+  el("close").addEventListener("click",closeSheet);
+  overlay.addEventListener("click",e=>{if(e.target===overlay)closeSheet()});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+
+  el("search").addEventListener("input",e=>{state.q=e.target.value;render()});
+  el("f-type").addEventListener("change",e=>{state.type=e.target.value;render()});
+  el("f-domaine").addEventListener("change",e=>{state.domaine=e.target.value;render()});
+  el("f-genre").addEventListener("change",e=>{state.genre=e.target.value;render()});
+  el("f-auteur").addEventListener("change",e=>{state.auteur=e.target.value;render()});
+  el("pret").addEventListener("click",function(){state.pret=!state.pret;this.classList.toggle("on",state.pret);render()});
+
+  render();
+})();
+</script>
+</body>
+</html>
