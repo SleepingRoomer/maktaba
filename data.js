@@ -24,6 +24,24 @@
                    (PDF, archive, fiche, etc.)
    ============================================================================ */
 
+/* ----------------------------------------------------------------------------
+   RÉGLAGES — à ajuster une fois.
+   ---------------------------------------------------------------------------- */
+const CONFIG = {
+  // Nom affiché en haut de la page et dans l'onglet du navigateur.
+  titre: "Maktaba",
+
+  // Adresse qui recevra les propositions de dépôt envoyées via le formulaire.
+  // REMPLACEZ par votre vraie adresse.
+  emailDepot: "brahimiarsalan@gmail.com",
+
+  // false  -> le formulaire ouvre le logiciel de messagerie du visiteur,
+  //           pré-rempli (aucun service tiers, rien à installer).
+  // true   -> les dépôts arrivent directement dans votre boîte via FormSubmit
+  //           (gratuit ; une seule confirmation à valider au premier envoi).
+  envoiAuto: false
+};
+
 const RESOURCES = [
   {
     titre: "Une histoire de tout, ou presque",
@@ -118,4 +136,7 @@ const RESOURCES = [
 ];
 
 /* Ne pas modifier ci-dessous — rend les données accessibles à la page. */
-if (typeof window !== "undefined") window.RESOURCES = RESOURCES;
+if (typeof window !== "undefined") {
+  window.RESOURCES = RESOURCES;
+  window.CONFIG = CONFIG;
+}
