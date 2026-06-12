@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ettes3inat | التسعينات</title>
+<meta name="description" content="Un espace d’échange sur la décennie noire et ses mémoires." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Reem+Kufi:wght@400..700&family=Amiri:ital,wght@0,400;0,700&display=swap" rel="stylesheet" />
+<style>
+  /* ===== ETTES3INAT — tokens (design system) ===== */
+  :root{
+    --black:#000; --white:#fff; --soft:#A0A0A0; --faint:#333; --line:#222; --dim:#6A6A6A;
+    --scrim:rgba(0,0,0,.95); --backdrop:rgba(0,0,0,.97);
+    --serif:"Tinos","Times New Roman",Times,serif;
+    --display:"Archivo Black","Arial Black",system-ui,sans-serif;
+    --ar-disp:"Reem Kufi",var(--serif);
+    --ar-body:"Amiri",var(--serif);
+    --container:1320px; --gutter:32px;
+    --ease:cubic-bezier(.2,.7,.3,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--black);color:var(--white);font-family:var(--serif);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  ::selection{background:#fff;color:#000}
+  a{color:inherit}
+  :focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .wrap{max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
+
+  /* ===== film grain ===== */
+  .grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.06;mix-blend-mode:screen;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* ===== hero ===== */
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 24px 40px;position:relative}
+  .mono{display:flex;align-items:flex-end;gap:8px;line-height:1}
+  .mono .num{font:400 clamp(80px,18vw,150px)/.82 var(--display);letter-spacing:-3px;color:#fff}
+  .mono .flank{font:400 clamp(22px,5vw,38px)/1 var(--serif);color:var(--soft);padding-bottom:.16em}
+  .ar-lock{display:flex;align-items:center;gap:12px;font-family:var(--ar-disp);font-size:clamp(34px,9vw,54px);color:#fff;margin-top:18px}
+  .dia{display:inline-block;width:.22em;height:.22em;background:currentColor;transform:rotate(45deg)}
+  .ette{font:400 14px/1 var(--serif);letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-top:14px}
+  .manifeste-ar{margin:46px 0 0;font-family:var(--ar-body);font-size:1.22rem;line-height:1.9;color:#fff;max-width:720px;direction:rtl}
+  .manifeste-fr{margin:20px 0 0;max-width:640px;font:italic 400 1.22rem/1.7 var(--serif);color:var(--soft)}
+  .hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:44px 0 0}
+
+  /* ===== buttons ===== */
+  .btn{font:700 .82rem/1 var(--serif);letter-spacing:.13em;text-transform:uppercase;padding:13px 22px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid #fff;background:transparent;color:#fff;transition:background .2s,color .2s,border-color .2s}
+  .btn:hover{background:#fff;color:#000}
+  .btn.fill{background:#fff;color:#000}
+  .btn.fill:hover{background:var(--soft);border-color:var(--soft)}
+  .btn:active{transform:translateY(1px)}
+
+  /* ===== filter bar ===== */
+  .bar{position:sticky;top:0;z-index:20;background:var(--black);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .bar-inner{display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;padding:15px 0}
+  .brand-wm{font:700 17px/1 var(--serif);letter-spacing:.3em;text-transform:uppercase;color:#fff;text-decoration:none;white-space:nowrap}
+  .brand-wm .ar{font-family:var(--ar-disp);letter-spacing:0}
+  .search{position:relative;flex:1 1 200px;min-width:160px;display:flex;align-items:center}
+  .search svg{width:15px;height:15px;stroke:var(--soft);position:absolute;left:0;pointer-events:none}
+  .search input{width:100%;border:none;background:none;font-family:inherit;font-size:1rem;color:#fff;padding:6px 0 6px 24px;border-bottom:1px solid transparent}
+  .search input::placeholder{color:var(--soft)}
+  .search input:focus{outline:none;border-bottom-color:#fff}
+  select{appearance:none;border:none;background:none;font-family:inherit;cursor:pointer;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);padding:6px 16px 6px 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none' stroke='%23A0A0A0' stroke-width='1.6'%3E%3Cpath d='M1 3l3.5 3.5L8 3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
+  select:focus,select:hover{outline:none;color:#fff}
+  .count{margin-left:auto;font-size:.82rem;letter-spacing:.08em;color:var(--dim);white-space:nowrap}
+
+  /* ===== grid + cards ===== */
+  main{padding:40px 0 90px}
+  .grid{display:grid;gap:40px 30px;grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
+  .item{position:relative;cursor:pointer;opacity:0;animation:fade .6s forwards}
+  @keyframes fade{to{opacity:1}}
+  .cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--faint);box-shadow:0 1px 2px rgba(255,255,255,.05);transition:box-shadow .3s,transform .3s var(--ease)}
+  .item:hover .cover{box-shadow:0 18px 38px -16px rgba(255,255,255,.1);transform:translateY(-3px)}
+  .cover img{position:relative;width:100%;height:100%;object-fit:cover;display:block}
+  .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 18px;background:var(--faint)}
+  .fallback::after{content:"";position:absolute;inset:9px;border:1px solid rgba(255,255,255,.12)}
+  .fallback .ft{font-size:1.22rem;font-weight:700;line-height:1.22;color:#fff}
+  .fallback .fa{margin-top:9px;font-size:.92rem;font-style:italic;color:var(--soft)}
+  .hover{position:absolute;inset:0;background:var(--scrim);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;opacity:0;transition:opacity .28s}
+  .item:hover .hover{opacity:1}
+  .hv-mark{position:absolute;top:14px;left:16px;right:16px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .hv-title{font-size:1.22rem;font-weight:700;line-height:1.15;margin:0}
+  .hv-auth{font-size:.92rem;font-style:italic;color:rgba(255,255,255,.8);margin:5px 0 0}
+  .hv-meta{font-size:.82rem;letter-spacing:.03em;color:rgba(255,255,255,.5);margin:11px 0 0}
+  .empty{grid-column:1/-1;text-align:center;padding:90px 0;color:var(--soft);font-style:italic}
+
+  /* ===== overlay ===== */
+  .overlay{position:fixed;inset:0;background:var(--backdrop);display:none;align-items:center;justify-content:center;z-index:60;padding:36px}
+  .overlay.open{display:flex;animation:ov .25s}
+  @keyframes ov{from{opacity:0}to{opacity:1}}
+  .sheet{display:flex;gap:42px;max-width:860px;width:100%;align-items:center;animation:up .32s var(--ease)}
+  @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .sheet-cover{flex:0 0 270px}
+  .sheet-cover .cover{aspect-ratio:2/3;box-shadow:0 24px 60px -24px rgba(255,255,255,.1)}
+  .sheet-info{flex:1 1 280px;max-width:380px}
+  .si-type{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
+  .si-title{font-size:1.95rem;font-weight:700;line-height:1.1;margin:0}
+  .si-auth{font-style:italic;color:var(--soft);font-size:1.22rem;margin:8px 0 0}
+  .si-meta{margin:22px 0 0;border-top:1px solid var(--line);padding-top:18px;font-size:.95rem}
+  .si-meta .r{display:flex;gap:16px;padding:5px 0}
+  .si-meta .k{min-width:78px;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);padding-top:4px}
+  .si-desc{margin:18px 0 0;color:#fff;line-height:1.6}
+  .si-act{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}
+  .close{position:fixed;top:22px;right:28px;width:38px;height:38px;border:none;background:none;cursor:pointer;font-size:28px;color:#fff;line-height:1;z-index:70}
+  .close:hover{color:var(--soft)}
+
+  /* ===== footer ===== */
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;text-align:center;color:var(--dim);font-size:.82rem;letter-spacing:.04em}
+
+  @media(max-width:640px){
+    .wrap{padding:0 20px}
+    .grid{gap:28px 18px;grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+    .sheet{flex-direction:column;gap:26px;text-align:center;overflow-y:auto;max-height:88vh}
+    .sheet-cover{flex-basis:auto;width:190px}
+    .si-meta .r,.si-act{justify-content:center}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="mono">
+    <span class="flank">EL</span>
+    <span class="num">90</span>
+    <span class="flank">AT</span>
+  </div>
+  <div class="ar-lock"><span class="dia"></span><span>التسعينات</span><span class="dia"></span></div>
+  <div class="ette">Ettes3inat</div>
+  <p class="manifeste-ar">فضاء لتبادل الذاكرة حول العشرية السوداء — مع ومن أجل من عاشوها بالأمس ويروونها اليوم.</p>
+  <p class="manifeste-fr">Un espace d’échange sur la décennie noire et ses mémoires. Avec et pour celles et ceux qui l’ont vécue hier&nbsp;— et la racontent aujourd’hui.</p>
+  <div class="hero-cta">
+    <button class="btn fill" id="enter">Entrer dans l’archive</button>
+  </div>
+</section>
+
+<!-- ===== FILTER BAR ===== -->
+<div class="bar" id="archive">
+  <div class="wrap bar-inner">
+    <a class="brand-wm" href="#top">Ettes3inat <span class="ar">التسعينات</span></a>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Rechercher" aria-label="Rechercher" />
+    </div>
+    <select id="f-format" aria-label="Format"></select>
+    <select id="f-domaine" aria-label="Domaine"></select>
+    <select id="f-pays" aria-label="Pays"></select>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<!-- ===== GRID ===== -->
+<main class="wrap"><div class="grid" id="grid"><div class="empty">Chargement…</div></div></main>
+
+<footer>Ettes3inat | التسعينات &nbsp;·&nbsp; maktaba &nbsp;·&nbsp; mémoires de la décennie noire</footer>
+
+<!-- ===== OVERLAY ===== -->
+<div class="overlay" id="overlay">
+  <button class="close" id="close" aria-label="Fermer">×</button>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+</div>
+
+<script>
+/* ============================================================================
+   DONNÉES — éditer ici. Pour brancher un Google Sheet publié en CSV, renseigne
+   CONFIG.sheetCsvUrl (les colonnes reconnues : Name, Auteur.ice, Format,
+   Domaine, Pays, Sujets, Date, Description, Image, Lien, Statut).
+   ============================================================================ */
+const CONFIG = { titre: "Ettes3inat | التسعينات", sheetCsvUrl: "" };
+
+const RESOURCES = [
+  { Name:"1994", "Auteur.ice":"Adlène Meddi | عدلان مدي", Format:"Roman | Novel | رواية", Domaine:"Littérature", Pays:"Algérie", Sujets:"Français, années de plomb, fiction", Date:2017, Description:"Quatre lycéens d’El-Harrach forment un groupe clandestin de lutte antiterroriste alors que le pays est à feu et à sang.", Image:"https://m.media-amazon.com/images/I/81U2fN2RkDL._AC_UF1000,1000_QL80_.jpg", Lien:"http://www.editions-barzakh.com/catalogue/1994", Statut:"Validé" },
+  { Name:"Passion d’Algérie — Chroniques de tourments", "Auteur.ice":"Badra Moutassem-Mimouni | بدرة معتصم ميموني", Format:"Témoignage | Testimony | شهادة", Domaine:"Société", Pays:"Algérie", Sujets:"Français, témoignage, décennie noire", Date:2006, Description:"Chroniques et témoignages sur les bouleversements psychologiques et sociaux en Algérie.", Image:"https://m.media-amazon.com/images/I/41-q9tq4AUL.jpg", Lien:"", Statut:"Validé" },
+  { Name:"An Inquiry into the Algerian Massacres", "Auteur.ice":"Y. Bedjaoui, A. Aroua, M. Aït-Larbi | يوسف بجاوي", Format:"Académique | Academic | بحث", Domaine:"Histoire", Pays:"Algérie", Sujets:"English, recherche, massacres", Date:1999, Description:"Recherche académique approfondie sur les massacres perpétrés durant la décennie noire.", Image:"", Lien:"https://hoggar.org/wp-content/uploads/1999/08/hog-inquiry-book.pdf", Statut:"Validé" },
+  { Name:"Guerre sans images — Algérie, je sais que tu sais", "Auteur.ice":"M. Soudani, M. Von Graffenried", Format:"Documentaire | Documentary | فيلم", Domaine:"Documentaire", Pays:"Algérie", Sujets:"Français, Derja, photographie", Date:2002, Description:"Film documentaire. Audio en derja (dialecte algérien).", Image:"https://img.youtube.com/vi/4Vhu0BJ1T7s/hqdefault.jpg", Lien:"https://www.youtube.com/watch?v=4Vhu0BJ1T7s", Statut:"Validé" },
+  { Name:"Le Serment des barbares", "Auteur.ice":"Boualem Sansal | بوعلام صنصال", Format:"Roman | Novel | رواية", Domaine:"Littérature", Pays:"Algérie", Sujets:"Français, polar, violence", Date:1999, Description:"Premier roman de Sansal : une enquête policière qui dissèque l’Algérie des années 1990.", Image:"", Lien:"", Statut:"Validé" },
+  { Name:"Bab El-Oued City", "Auteur.ice":"Merzak Allouache | مرزاق علواش", Format:"Film | Film | فيلم", Domaine:"Cinéma", Pays:"Algérie", Sujets:"Derja, Alger, fiction", Date:1994, Description:"Dans le quartier populaire de Bab El-Oued, un boulanger arrache un haut-parleur de prêche — et bascule.", Image:"", Lien:"", Statut:"Validé" },
+  { Name:"À quoi rêvent les loups", "Auteur.ice":"Yasmina Khadra | ياسمينة خضراء", Format:"Roman | Novel | رواية", Domaine:"Littérature", Pays:"Algérie", Sujets:"Français, embrigadement, fiction", Date:1999, Description:"La trajectoire d’un jeune Algérois happé par la violence intégriste.", Image:"", Lien:"", Statut:"Validé" },
+  { Name:"Rachida", "Auteur.ice":"Yamina Bachir-Chouikh | يمينة بشير شويخ", Format:"Film | Film | فيلم", Domaine:"Cinéma", Pays:"Algérie", Sujets:"Derja, femmes, fiction", Date:2002, Description:"Une jeune institutrice refuse de poser une bombe, et survit. Premier long-métrage de la réalisatrice.", Image:"", Lien:"", Statut:"Validé" },
+  { Name:"Matoub Lounès — enregistrement militant", "Auteur.ice":"Matoub Lounès | معتوب لوناس", Format:"Cassette | Tape | شريط", Domaine:"Musique", Pays:"Algérie", Sujets:"Kabyle, chanson, engagement", Date:1995, Description:"Enregistrement du chanteur kabyle, figure de la contestation.", Image:"", Lien:"", Statut:"Validé" },
+  { Name:"Les Agneaux du Seigneur", "Auteur.ice":"Yasmina Khadra | ياسمينة خضراء", Format:"Roman | Novel | رواية", Domaine:"Littérature", Pays:"Algérie", Sujets:"Français, village, fiction", Date:1998, Description:"La lente contamination d’un village par la haine, à l’aube de la guerre civile.", Image:"", Lien:"", Statut:"Validé" },
+  { Name:"El Manchar — années 90", "Auteur.ice":"Collectif | جماعي", Format:"Magazine | Magazine | مجلة", Domaine:"Presse satirique", Pays:"Algérie", Sujets:"Derja, satire, caricature", Date:1993, Description:"Le journal satirique algérien : rire comme acte de résistance pendant les années de plomb.", Image:"", Lien:"", Statut:"Validé" },
+  { Name:"Algérie, la vie quand même", "Auteur.ice":"Photographie documentaire", Format:"Photographie | Photography | تصوير", Domaine:"Photographie", Pays:"Algérie", Sujets:"images, quotidien, archives", Date:1997, Description:"Un fonds photographique sur la vie ordinaire qui continue, malgré la violence.", Image:"", Lien:"", Statut:"Validé" }
+];
+</script>
+
+<script>
+(function(){
+  const el=id=>document.getElementById(id);
+  const grid=el("grid"),overlay=el("overlay"),sheet=el("sheet");
+  let DATA=[];
+  const state={q:"",format:"",domaine:"",pays:""};
+  if(CONFIG.titre)document.title=CONFIG.titre;
+
+  const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+  const escA=s=>esc(s).replace(/"/g,"&quot;");
+  const normKey=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
+  const STATUT_OK=["valide","validee","ok","oui","publie","accepte","approuve","x","true","1","y","yes","✓"];
+
+  function mapHeaders(h){const f=(...k)=>h.find(x=>{const n=normKey(x);return k.some(y=>n.includes(y))});return{
+    titre:f("name","nom","titre"),auteur:f("auteur.ice","auteur","artiste"),type:f("format","type","support"),
+    domaine:f("domaine","categorie"),pays:f("pays","country"),sujets:f("sujets","sujet","mot-cle","tag"),
+    annee:f("date","annee","year"),description:f("description","descri","resume"),couverture:f("image","couv","photo","visuel"),
+    lien:f("lien","url","http"),statut:f("statut","etat","valid")};}
+
+  function build(row,m){const g=k=>{const h=m[k];if(h==null)return"";const v=row[h];return typeof v==="string"?v.trim():(v==null?"":v)};
+    const titre=g("titre");if(!titre)return null;
+    return{titre,auteur:g("auteur"),type:g("type"),domaine:g("domaine"),pays:g("pays"),
+      sujets:g("sujets")?String(g("sujets")).split(/[;,]/).map(s=>s.trim()).filter(Boolean):[],
+      annee:g("annee")?(parseInt(g("annee"),10)||""):"",description:g("description"),couverture:g("couverture"),
+      lien:g("lien"),_statut:normKey(g("statut"))};}
+
+  function loadData(done){
+    const url=(CONFIG.sheetCsvUrl||"").trim();
+    const localM=mapHeaders(["Name","Auteur.ice","Format","Domaine","Pays","Sujets","Date","Description","Image","Lien","Statut"]);
+    const local=()=>RESOURCES.map(r=>build(r,localM)).filter(r=>r&&STATUT_OK.includes(r._statut));
+    if(!url||typeof Papa==="undefined")return done(local());
+    Papa.parse(url,{download:true,header:true,skipEmptyLines:true,
+      complete:res=>{const headers=(res.meta&&res.meta.fields)||[];if(!headers.length)return done(local());
+        const m=mapHeaders(headers);const built=(res.data||[]).map(r=>build(r,m)).filter(Boolean);
+        done(m.statut?built.filter(r=>STATUT_OK.includes(r._statut)):built);},
+      error:()=>done(local())});
+  }
+
+  function uniq(k){const s=new Set();DATA.forEach(r=>{if(r[k])s.add(r[k])});return[...s].sort((a,b)=>String(a).localeCompare(String(b),"fr"))}
+  function fill(sel,label,vals){sel.innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option value="${escA(v)}">${esc(v)}</option>`).join("")}
+
+  function coverInner(r){
+    const fb=`<div class="fallback"><div class="ft">${esc(r.titre)}</div>${r.auteur?`<div class="fa">${esc(r.auteur)}</div>`:""}</div>`;
+    if(r.couverture&&String(r.couverture).trim())return fb+`<img src="${escA(r.couverture)}" alt="${escA(r.titre)}" loading="lazy" onerror="this.remove()">`;
+    return fb;}
+  function itemHtml(r){
+    const meta=[r.domaine,r.pays,r.annee].filter(Boolean).join("   ·   ");
+    const fmt=r.type?r.type.split(" | ")[0]:"";
+    return `<article class="item" data-i="${r._i}" tabindex="0" style="animation-delay:${Math.min(r._pos*45,500)}ms">
+      <div class="cover">${coverInner(r)}</div>
+      <div class="hover">
+        <div class="hv-mark">${esc(fmt)}</div>
+        <div><h3 class="hv-title">${esc(r.titre)}</h3>${r.auteur?`<p class="hv-auth">${esc(r.auteur)}</p>`:""}${meta?`<p class="hv-meta">${esc(meta)}</p>`:""}</div>
+      </div></article>`;}
+
+  function matches(r){
+    if(state.format&&(r.type||"").split(" | ")[0]!==state.format)return false;
+    if(state.domaine&&r.domaine!==state.domaine)return false;
+    if(state.pays&&r.pays!==state.pays)return false;
+    if(state.q){const h=[r.titre,r.auteur,r.description,(r.sujets||[]).join(" "),r.domaine,r.pays,r.type].filter(Boolean).join(" ").toLowerCase();if(!h.includes(state.q.toLowerCase()))return false}
+    return true;}
+  function render(){
+    const list=DATA.filter(matches);
+    el("count").textContent=list.length?`${list.length} archive${list.length>1?"s":""}`:"";
+    if(!list.length){grid.innerHTML='<div class="empty">Aucune archive correspondante.</div>';return}
+    list.forEach((r,p)=>r._pos=p);
+    grid.innerHTML=list.map(itemHtml).join("");}
+
+  function openSheet(r){
+    const rows=[r.annee&&["Date",r.annee],r.domaine&&["Domaine",r.domaine],r.pays&&["Pays",r.pays],(r.sujets&&r.sujets.length)&&["Sujets",r.sujets.join(", ")]]
+      .filter(Boolean).map(([k,v])=>`<div class="r"><span class="k">${k}</span><span class="v">${esc(String(v))}</span></div>`).join("");
+    const consult=r.lien?`<a class="btn fill" href="${escA(r.lien)}" target="_blank" rel="noopener">Consulter</a>`:"";
+    sheet.innerHTML=`
+      <div class="sheet-cover"><div class="cover">${coverInner(r)}</div></div>
+      <div class="sheet-info">
+        ${r.type?`<div class="si-type">${esc(r.type)}</div>`:""}
+        <h2 class="si-title">${esc(r.titre)}</h2>
+        ${r.auteur?`<p class="si-auth">${esc(r.auteur)}</p>`:""}
+        ${rows?`<div class="si-meta">${rows}</div>`:""}
+        ${r.description?`<p class="si-desc">${esc(r.description)}</p>`:""}
+        ${consult?`<div class="si-act">${consult}</div>`:""}
+      </div>`;
+    overlay.classList.add("open");document.body.style.overflow="hidden";}
+  function closeSheet(){overlay.classList.remove("open");document.body.style.overflow=""}
+
+  grid.addEventListener("click",e=>{const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])});
+  grid.addEventListener("keydown",e=>{if(e.key==="Enter"){const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])}});
+  el("close").addEventListener("click",closeSheet);
+  overlay.addEventListener("click",e=>{if(e.target===overlay)closeSheet()});
+  el("search").addEventListener("input",e=>{state.q=e.target.value;render()});
+  el("f-format").addEventListener("change",e=>{state.format=e.target.value;render()});
+  el("f-domaine").addEventListener("change",e=>{state.domaine=e.target.value;render()});
+  el("f-pays").addEventListener("change",e=>{state.pays=e.target.value;render()});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+  el("enter").addEventListener("click",()=>el("archive").scrollIntoView({behavior:"smooth"}));
+
+  loadData(rows=>{
+    DATA=rows.map((r,i)=>({...r,_i:i}));
+    fill(el("f-format"),"Format",[...new Set(DATA.map(r=>(r.type||"").split(" | ")[0]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"fr")));
+    fill(el("f-domaine"),"Domaine",uniq("domaine"));
+    fill(el("f-pays"),"Pays",uniq("pays"));
+    render();
+  });
+})();
+</script>
+</body>
+</html>
