@@ -1,76 +1,68 @@
 /* ============================================================================
    CATALOGUE ETTES3INAT (التسعينات)
    ----------------------------------------------------------------------------
-   Champs disponibles pour la base de données :
-     titre       : le titre de l'archive (obligatoire)
-     auteur      : artiste, créateur ou figure historique
-     type        : "Cassette", "Magazine", "Photographie", "VHS"...
-     domaine     : "Pop culture", "Politics", "Socio-economics"...
-     pays        : "Algérie", "Égypte", "Liban", "Maroc"...
-     sujets      : liste de mots-clés, ex : ["raï", "musique"]
-     annee       : année exacte (ex: 1994)
-     description : contexte historique ou anecdote
-     couverture  : URL d'une image
-     lien        : lien vers l'archive complète (YouTube, PDF, etc.)
-     statut      : "Validé" (seules ces lignes s'affichent)
+   Champs reconnus (basés sur votre base Notion) :
+     Name        : le titre de l'archive (obligatoire)
+     Auteur.ice  : artiste, créateur ou figure historique
+     Format      : "Cassette", "Magazine", "Photographie"...
+     Domaine     : "Pop culture", "Politics", "Underground"...
+     Pays        : "Algérie", "Égypte", "Liban"...
+     Sujets      : liste de mots-clés (ex: "raï, musique")
+     Date        : année exacte (ex: 1994)
+     Description : contexte historique ou anecdote
+     Image       : URL d'une image ou fichier
+     Lien        : lien vers l'archive complète (YouTube, PDF, etc.)
+     Statut      : "Validé" (seules ces lignes s'affichent)
    ============================================================================ */
 
 const CONFIG = {
-  // Nom affiché en haut de la page et dans l'onglet du navigateur.
   titre: "Ettes3inat | التسعينات",
-
-  // (1) BASE DE DONNÉES via Google Sheets (édition simple, comme un tableur).
-  //     Collez ici le lien CSV publié de votre feuille.
-  //     Laissez "" pour utiliser à la place les ressources locales ci-dessous.
+  // Collez ici le lien CSV publié de votre Google Sheet
   sheetCsvUrl: ""
 };
 
 const RESOURCES = [
   {
-    titre: "Cheb Hasni - Lover's Mix",
-    auteur: "Cheb Hasni",
-    type: "Cassette",
-    domaine: "Pop culture",
-    pays: "Algérie",
-    sujets: ["raï", "musique"],
-    annee: 1992,
-    description:
-      "Une cassette emblématique du raï sentimental des années 90, reflétant l'esthétique et l'émotion de l'époque.",
-    couverture: "",
-    lien: "",
-    statut: "Validé"
+    Name: "Al-Ahram - Numéro Spécial",
+    "Auteur.ice": "Al-Ahram",
+    Format: "Magazine",
+    Domaine: "Politics",
+    Pays: "Égypte",
+    Sujets: "presse, politique",
+    Date: 1995,
+    Description: "Une édition spéciale couvrant les grands bouleversements socio-économiques du milieu de la décennie.",
+    Image: "",
+    Lien: "",
+    Statut: "Validé"
   },
   {
-    titre: "Coup d'état cover",
-    auteur: "Anonyme",
-    type: "Photographie",
-    domaine: "Politics",
-    pays: "Égypte",
-    sujets: ["histoire", "politique"],
-    annee: 1994,
-    description:
-      "Image marquante capturant les tensions politiques du milieu de la décennie.",
-    couverture: "",
-    lien: "",
-    statut: "Validé"
+    Name: "Beyrouth Underground Postcard",
+    "Auteur.ice": "Anonyme",
+    Format: "Photographie",
+    Domaine: "Underground",
+    Pays: "Liban",
+    Sujets: "nuit, reconstruction",
+    Date: 1998,
+    Description: "Photographie capturant la scène nocturne émergente de Beyrouth à la fin des années 90.",
+    Image: "",
+    Lien: "",
+    Statut: "Validé"
   },
   {
-    titre: "Revue Al-Moustakbal",
-    auteur: "Collectif",
-    type: "Magazine",
-    domaine: "Socio-economics",
-    pays: "Liban",
-    sujets: ["presse", "société"],
-    annee: 1996,
-    description:
-      "Numéro analysant les changements économiques après-guerre.",
-    couverture: "",
-    lien: "",
-    statut: "Validé"
+    Name: "Cheb Hasni - Lover's Mix",
+    "Auteur.ice": "Cheb Hasni",
+    Format: "Cassette",
+    Domaine: "Pop culture",
+    Pays: "Algérie",
+    Sujets: "raï, musique",
+    Date: 1992,
+    Description: "Une des cassettes les plus populaires du roi du Raï sentimental, marquant l'esthétique musicale des années 90 en Algérie.",
+    Image: "",
+    Lien: "https://youtube.com/",
+    Statut: "Validé"
   }
 ];
 
-/* Ne pas modifier ci-dessous — rend les données accessibles à la page. */
 if (typeof window !== "undefined") {
   window.RESOURCES = RESOURCES;
   window.CONFIG = CONFIG;
