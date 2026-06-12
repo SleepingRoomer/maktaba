@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ettes3inat | التسعينat</title>
+<title>Ettes3inat | التسعينات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
     /* Direction Artistique : Noir et Blanc (Mode Sombre) */
-    --bg: #000000;         /* Fond pur noir */
-    --ink: #FFFFFF;        /* Texte pur blanc */
-    --soft: #A0A0A0;       /* Gris moyen pour textes secondaires */
-    --faint: #333333;      /* Gris foncé pour bordures discrètes */
-    --line: #222222;       /* Gris très foncé pour lignes de séparation */
-    --over: rgba(0,0,0,0.95); /* Overlay noir opaque pour fiches */
-    --serif: "Tinos", "Times New Roman", Times, serif; /* Police similaire conservée */
+    --bg: #000000;         
+    --ink: #FFFFFF;        
+    --soft: #A0A0A0;       
+    --faint: #333333;      
+    --line: #222222;       
+    --over: rgba(0,0,0,0.95); 
+    --serif: "Tinos", "Times New Roman", Times, serif; 
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -34,7 +34,6 @@
   .search input::placeholder{color:var(--soft)}
   .search input:focus{outline:none;border-bottom-color:var(--ink)}
   
-  /* Selecteurs en N&B */
   select{appearance:none;border:none;background:none;font-family:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);padding:6px 16px 6px 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none' stroke='%23A0A0A0' stroke-width='1.6'%3E%3Cpath d='M1 3l3.5 3.5L8 3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
   select:focus{outline:none;color:var(--ink)}select:hover{color:var(--ink)}
   
@@ -45,7 +44,6 @@
   .item{position:relative;cursor:pointer;opacity:0;animation:fade .6s forwards}
   @keyframes fade{to{opacity:1}}
   
-  /* Grille N&B */
   .cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--faint);box-shadow:0 1px 2px rgba(255,255,255,.05);transition:box-shadow .3s,transform .3s cubic-bezier(.2,.7,.3,1)}
   .item:hover .cover{box-shadow:0 18px 38px -16px rgba(255,255,255,.1);transform:translateY(-3px)}
   .cover img{width:100%;height:100%;object-fit:cover;display:block}
@@ -54,8 +52,7 @@
   .fallback .ft{font-size:1.05rem;font-weight:700;line-height:1.22;color:var(--ink)}
   .fallback .fa{margin-top:9px;font-size:.85rem;font-style:italic;color:var(--soft)}
 
-  /* Hover N&B */
-  .hover{position:absolute;inset:0;background:var(--over);color:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 166px;padding:18px 16px;opacity:0;transition:opacity .28s}
+  .hover{position:absolute;inset:0;background:var(--over);color:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;opacity:0;transition:opacity .28s}
   .item:hover .hover{opacity:1}
   .hv-mark{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
   .hv-title{font-size:1.22rem;font-weight:700;line-height:1.15;margin:0}
@@ -64,7 +61,6 @@
 
   .empty{grid-column:1/-1;text-align:center;padding:90px 0;color:var(--soft);font-size:1rem}
 
-  /* Overlay Fiche N&B */
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center;z-index:60;padding:36px}
   .overlay.open{display:flex;animation:ov .25s}
   @keyframes ov{from{opacity:0}to{opacity:1}}
@@ -82,7 +78,6 @@
   .si-meta .v{color:var(--ink)}
   .si-desc{margin:18px 0 0;color:var(--ink);font-size:1rem;line-height:1.6}
   
-  /* Boutons N&B */
   .si-act{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}
   .btn{font-family:inherit;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:12px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:.2s;border:1px solid var(--ink)}
   .btn-fill{background:var(--ink);color:var(--bg)}.btn-fill:hover{background:var(--soft);border-color:var(--soft)}
@@ -109,7 +104,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       <input id="search" type="search" placeholder="Rechercher" aria-label="Rechercher">
     </div>
-    <select id="f-type" aria-label="Type"></select>
+    <select id="f-type" aria-label="Format"></select>
     <select id="f-domaine" aria-label="Domaine"></select>
     <select id="f-pays" aria-label="Pays"></select>
     <select id="f-auteur" aria-label="Auteur"></select>
@@ -139,28 +134,27 @@
   const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   const escA=s=>esc(s).replace(/"/g,"&quot;");
 
-  /* ---------- Chargement des données ---------- */
   function normKey(s){return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim()}
-  // Valeurs de la colonne "statut" considérées comme PUBLIÉES (insensible aux accents/casse).
   const STATUT_OK=["valide","validee","ok","oui","publie","accepte","approuve","x","true","1","y","yes","✓"];
 
-  // Repère, parmi les en-têtes du tableur, la colonne de chaque champ.
+  // La correspondance exacte avec les colonnes de votre capture Notion
   function mapHeaders(headers){
     const find=(...keys)=>headers.find(h=>{const n=normKey(h);return keys.some(k=>n.includes(k))});
     return {
-      titre:find("titre","title","ouvrage"),
-      auteur:find("auteur","author"),
-      type:find("type","support","format"),
-      domaine:find("domaine","domain","categorie"),
-      pays:find("pays","country"), // Filtre Genre remplacé par Pays
-      sujets:find("sujet","mot-cle","tag","theme"),
-      annee:find("annee","year","date"),
-      description:find("descri","resume","note","contexte"),
-      couverture:find("couv","image","visuel","photo"),
-      lien:find("lien","url","http","acces"),
-      statut:find("statut","etat","valid","moderation","publie")
+      titre:find("name", "nom", "titre"),
+      auteur:find("auteur.ice", "auteur", "artiste"),
+      type:find("format", "type", "support"),
+      domaine:find("domaine", "categorie"),
+      pays:find("pays", "country"),
+      sujets:find("sujets", "sujet", "mot-cle", "tag"),
+      annee:find("date", "annee", "year"),
+      description:find("description", "descri", "resume"),
+      couverture:find("image", "couv", "photo", "visuel"),
+      lien:find("lien", "url", "http"),
+      statut:find("statut", "etat", "valid")
     };
   }
+  
   function buildFromMapped(row,m){
     const g=k=>{const h=m[k];if(h==null)return"";const v=row[h];return typeof v==="string"?v.trim():(v==null?"":v)};
     const titre=g("titre");if(!titre)return null;
@@ -174,27 +168,28 @@
     };
   }
   
-  function useLocal(){return (window.RESOURCES||[]).map(r=>({...r}))}
+  function useLocal(){return (window.RESOURCES||[]).map(r=>buildFromMapped(r, mapHeaders(Object.keys(r))))}
 
   function loadData(done){
     const url=(CFG.sheetCsvUrl||"").trim();
-    if(!url||typeof Papa==="undefined"){return done(useLocal())}
+    if(!url||typeof Papa==="undefined"){
+        const m = mapHeaders(["Name", "Auteur.ice", "Format", "Domaine", "Pays", "Sujets", "Date", "Description", "Image", "Lien", "Statut"]);
+        const local = (window.RESOURCES||[]).map(r => buildFromMapped(r, m)).filter(r => STATUT_OK.includes(r._statut));
+        return done(local);
+    }
     Papa.parse(url,{download:true,header:true,skipEmptyLines:true,
       complete:res=>{
         const headers=(res.meta&&res.meta.fields)?res.meta.fields:[];
-        if(!headers.length)return done(useLocal());
+        if(!headers.length)return done([]);
         const m=mapHeaders(headers);
         const built=(res.data||[]).map(r=>buildFromMapped(r,m)).filter(Boolean);
-        if(!built.length)return done(useLocal());
-        // Si une colonne "statut" existe, on n'affiche que les lignes validées.
         const visible=m.statut?built.filter(r=>STATUT_OK.includes(r._statut)):built;
         done(visible);
       },
-      error:()=>{console.warn("Lecture du tableur impossible, données locales utilisées.");done(useLocal())}
+      error:()=>{console.warn("Erreur réseau. Données locales utilisées.");done([])}
     });
   }
 
-  /* ---------- Rendu ---------- */
   function uniq(k){const s=new Set();DATA.forEach(r=>{if(r[k])s.add(r[k])});return[...s].sort((a,b)=>a.localeCompare(b,"fr"))}
   function fill(sel,label,vals){sel.innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option value="${escA(v)}">${esc(v)}</option>`).join("")}
 
@@ -230,7 +225,7 @@
   }
 
   function openSheet(r){
-    const rows=[r.annee&&["Année",r.annee],r.domaine&&["Domaine",r.domaine],r.pays&&["Pays",r.pays],(r.sujets&&r.sujets.length)&&["Sujets",r.sujets.join(", ")]]
+    const rows=[r.annee&&["Date",r.annee],r.domaine&&["Domaine",r.domaine],r.pays&&["Pays",r.pays],(r.sujets&&r.sujets.length)&&["Sujets",r.sujets.join(", ")]]
       .filter(Boolean).map(([k,v])=>`<div class="r"><span class="k">${k}</span><span class="v">${esc(String(v))}</span></div>`).join("");
     const consult=r.lien?`<a class="btn btn-fill" href="${escA(r.lien)}" target="_blank" rel="noopener">Consulter</a>`:"";
     sheet.innerHTML=`
@@ -255,7 +250,7 @@
   el("search").addEventListener("input",e=>{state.q=e.target.value;render()});
   el("f-type").addEventListener("change",e=>{state.type=e.target.value;render()});
   el("f-domaine").addEventListener("change",e=>{state.domaine=e.target.value;render()});
-  el("f-pays").addEventListener("change",e=>{state.pays=e.target.value;render()}); // Filtre Pays
+  el("f-pays").addEventListener("change",e=>{state.pays=e.target.value;render()}); 
   el("f-auteur").addEventListener("change",e=>{state.auteur=e.target.value;render()});
 
   document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet()}});
@@ -263,9 +258,9 @@
   /* ---------- Démarrage ---------- */
   loadData(rows=>{
     DATA=rows.map((r,i)=>({...r,_i:i}));
-    fill(el("f-type"),"Type",uniq("type"));
+    fill(el("f-type"),"Format",uniq("type")); // Label du filtre changé en Format
     fill(el("f-domaine"),"Domaine",uniq("domaine"));
-    fill(el("f-pays"),"Pays",uniq("pays")); // Filtre Pays
+    fill(el("f-pays"),"Pays",uniq("pays")); 
     fill(el("f-auteur"),"Auteur",uniq("auteur"));
     render();
   });
