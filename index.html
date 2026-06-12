@@ -3,320 +3,229 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bibliothèque</title>
+<title>Ettes3inat | التسعينات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#ffffff;
-    --ink:#141414;
-    --soft:#777;
-    --faint:#b8b8b8;
-    --line:#ececec;
-    --over:rgba(18,18,18,.9);
-    --serif:"Tinos","Times New Roman",Times,serif;
+    /* Couleurs identité Ettes3inat */
+    --bg: #131b3b;        /* Fond bleu nuit */
+    --ink: #fdf5d3;       /* Texte crème/jaune pâle */
+    --accent: #f58426;    /* Orange vif */
+    --soft: #9aa4cd;      /* Texte secondaire / gris bleuté */
+    --faint: #2a355c;     /* Bordures et fonds légers */
+    --line: #1e284d;      /* Lignes de séparation */
+    --over: rgba(19, 27, 59, 0.98); /* Fond semi-transparent */
+    --serif: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    margin:0;background:var(--bg);color:var(--ink);
-    font-family:var(--serif);
-    font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;
-  }
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1320px;margin:0 auto;padding:0 32px}
 
   header{padding:46px 0 0}
-  .title{font-size:.82rem;letter-spacing:.4em;text-transform:uppercase;font-weight:700;margin:0}
+  .title{font-size:.82rem;letter-spacing:.4em;text-transform:uppercase;font-weight:700;margin:0;color:var(--accent);}
 
   .bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);margin-top:30px}
   .bar-inner{display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;padding:15px 0}
   .search{position:relative;flex:1 1 200px;min-width:160px;display:flex;align-items:center}
-  .search svg{width:15px;height:15px;stroke:var(--faint);position:absolute;left:0;pointer-events:none}
+  .search svg{width:15px;height:15px;stroke:var(--soft);position:absolute;left:0;pointer-events:none}
   .search input{width:100%;border:none;background:none;font-family:inherit;font-size:1rem;color:var(--ink);padding:6px 0 6px 24px;border-bottom:1px solid transparent}
-  .search input::placeholder{color:var(--faint)}
-  .search input:focus{outline:none;border-bottom-color:var(--ink)}
-  select{
-    appearance:none;border:none;background:none;font-family:inherit;cursor:pointer;
-    font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);
-    padding:6px 16px 6px 0;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none' stroke='%23999' stroke-width='1.6'%3E%3Cpath d='M1 3l3.5 3.5L8 3'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;background-position:right center;
-  }
+  .search input::placeholder{color:var(--soft)}
+  .search input:focus{outline:none;border-bottom-color:var(--accent)}
+  
+  select{appearance:none;border:none;background:none;font-family:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);padding:6px 16px 6px 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none' stroke='%239aa4cd' stroke-width='1.6'%3E%3Cpath d='M1 3l3.5 3.5L8 3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
   select:focus{outline:none;color:var(--ink)}select:hover{color:var(--ink)}
-  .pret{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);cursor:pointer;user-select:none;background:none;border:none;font-family:inherit;padding:6px 0;display:inline-flex;align-items:center;gap:7px}
-  .pret .d{width:7px;height:7px;border-radius:50%;border:1px solid var(--soft);transition:.2s}
-  .pret:hover{color:var(--ink)}.pret.on{color:var(--ink)}.pret.on .d{background:var(--ink);border-color:var(--ink)}
-  .count{margin-left:auto;font-size:.78rem;letter-spacing:.08em;color:var(--faint);white-space:nowrap}
-  .deposit{
-    font-family:inherit;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;
-    color:var(--ink);background:none;border:1px solid var(--ink);cursor:pointer;
-    padding:8px 16px;transition:.2s;white-space:nowrap;
-  }
-  .deposit:hover{background:var(--ink);color:#fff}
+  
+  .count{margin-left:auto;font-size:.78rem;letter-spacing:.08em;color:var(--soft);white-space:nowrap}
 
   main{padding:40px 0 90px}
   .grid{display:grid;gap:40px 30px;grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
   .item{position:relative;cursor:pointer;opacity:0;animation:fade .6s forwards}
   @keyframes fade{to{opacity:1}}
-  .cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:#f3f2ef;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:box-shadow .3s,transform .3s cubic-bezier(.2,.7,.3,1)}
-  .item:hover .cover{box-shadow:0 18px 38px -16px rgba(0,0,0,.4);transform:translateY(-3px)}
+  .cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--faint);box-shadow:0 1px 2px rgba(0,0,0,.15);transition:box-shadow .3s,transform .3s cubic-bezier(.2,.7,.3,1)}
+  .item:hover .cover{box-shadow:0 18px 38px -16px rgba(0,0,0,.6);transform:translateY(-3px)}
   .cover img{width:100%;height:100%;object-fit:cover;display:block}
-  .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 18px;background:#f3f2ef}
-  .fallback::after{content:"";position:absolute;inset:9px;border:1px solid rgba(20,20,20,.14)}
-  .fallback .ft{font-size:1.05rem;font-weight:700;line-height:1.22;color:#2a2a2a}
-  .fallback .fa{margin-top:9px;font-size:.85rem;font-style:italic;color:#888}
+  .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 18px;background:var(--faint)}
+  .fallback::after{content:"";position:absolute;inset:9px;border:1px solid var(--line)}
+  .fallback .ft{font-size:1.05rem;font-weight:700;line-height:1.22;color:var(--ink)}
+  .fallback .fa{margin-top:9px;font-size:.85rem;font-style:italic;color:var(--soft)}
 
-  .hover{position:absolute;inset:0;background:var(--over);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;opacity:0;transition:opacity .28s}
+  .hover{position:absolute;inset:0;background:var(--over);color:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;opacity:0;transition:opacity .28s}
   .item:hover .hover{opacity:1}
-  .hv-mark{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.62)}
-  .hv-mark .dot{display:inline-flex;align-items:center;gap:6px;color:#fff}
-  .hv-mark .dot::before{content:"";width:5px;height:5px;border-radius:50%;background:#fff}
+  .hv-mark{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
   .hv-title{font-size:1.22rem;font-weight:700;line-height:1.15;margin:0}
-  .hv-auth{font-size:.92rem;font-style:italic;color:rgba(255,255,255,.8);margin:5px 0 0}
-  .hv-meta{font-size:.74rem;letter-spacing:.03em;color:rgba(255,255,255,.55);margin:11px 0 0}
+  .hv-auth{font-size:.92rem;font-style:italic;color:var(--soft);margin:5px 0 0}
+  .hv-meta{font-size:.74rem;letter-spacing:.03em;color:var(--soft);margin:11px 0 0}
 
-  .empty{grid-column:1/-1;text-align:center;padding:90px 0;color:var(--faint);font-size:1rem}
+  .empty{grid-column:1/-1;text-align:center;padding:90px 0;color:var(--soft);font-size:1rem}
 
-  .overlay{position:fixed;inset:0;background:rgba(255,255,255,.97);display:none;align-items:center;justify-content:center;z-index:60;padding:36px}
+  .overlay{position:fixed;inset:0;background:var(--over);display:none;align-items:center;justify-content:center;z-index:60;padding:36px}
   .overlay.open{display:flex;animation:ov .25s}
   @keyframes ov{from{opacity:0}to{opacity:1}}
   .sheet{display:flex;gap:42px;max-width:860px;width:100%;align-items:center;animation:up .32s cubic-bezier(.2,.7,.3,1)}
   @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .sheet-cover{flex:0 0 270px}
-  .sheet-cover .cover{aspect-ratio:2/3;box-shadow:0 24px 60px -24px rgba(0,0,0,.45)}
+  .sheet-cover .cover{aspect-ratio:2/3;box-shadow:0 24px 60px -24px rgba(0,0,0,.8)}
   .sheet-info{flex:1 1 280px;max-width:380px}
-  .si-type{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
-  .si-title{font-size:1.95rem;font-weight:700;line-height:1.1;margin:0}
+  .si-type{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .si-title{font-size:1.95rem;font-weight:700;line-height:1.1;margin:0;color:var(--ink)}
   .si-auth{font-style:italic;color:var(--soft);font-size:1.1rem;margin:8px 0 0}
   .si-meta{margin:22px 0 0;border-top:1px solid var(--line);padding-top:18px;font-size:.9rem}
   .si-meta .r{display:flex;gap:16px;padding:5px 0}
-  .si-meta .k{min-width:78px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);padding-top:4px}
+  .si-meta .k{min-width:78px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);padding-top:4px}
   .si-meta .v{color:var(--ink)}
-  .si-desc{margin:18px 0 0;color:#333;font-size:1rem;line-height:1.6}
-  .si-pret{margin:18px 0 0;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:8px}
-  .si-pret.no{color:var(--faint)}
-  .si-pret .d{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .si-desc{margin:18px 0 0;color:var(--ink);font-size:1rem;line-height:1.6}
+  
   .si-act{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}
-  .btn{font-family:inherit;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:12px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:.2s;border:1px solid var(--ink)}
-  .btn-fill{background:var(--ink);color:#fff}.btn-fill:hover{background:#000}
-  .btn-line{background:none;color:var(--ink)}.btn-line:hover{background:var(--ink);color:#fff}
+  .btn{font-family:inherit;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:12px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:.2s;border:1px solid var(--accent)}
+  .btn-fill{background:var(--accent);color:var(--bg)}
+  .btn-fill:hover{background:#e0731c; border-color:#e0731c}
+  
   .close{position:fixed;top:22px;right:28px;width:38px;height:38px;border:none;background:none;cursor:pointer;font-size:28px;color:var(--ink);line-height:1;z-index:70}
-  .close:hover{color:var(--soft)}
-
-  /* ---------- Formulaire de dépôt ---------- */
-  .form-sheet{
-    background:var(--bg);max-width:540px;width:100%;max-height:88vh;overflow-y:auto;
-    animation:up .32s cubic-bezier(.2,.7,.3,1);text-align:left;
-  }
-  .form-sheet h2{font-size:1.7rem;font-weight:700;margin:0 0 4px}
-  .form-sheet .sub{color:var(--soft);font-size:.95rem;margin:0 0 26px;font-style:italic}
-  .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
-  .f-row{display:flex;flex-direction:column;margin-top:16px}
-  .f-row.full{grid-column:1/-1}
-  .f-row label{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:5px}
-  .f-row label .req{color:var(--ink)}
-  .f-row input,.f-row textarea{
-    font-family:inherit;font-size:1rem;color:var(--ink);background:none;
-    border:none;border-bottom:1px solid var(--line);padding:7px 0;resize:vertical;
-  }
-  .f-row input:focus,.f-row textarea:focus{outline:none;border-bottom-color:var(--ink)}
-  .f-check{display:flex;align-items:center;gap:10px;margin-top:22px;cursor:pointer;font-size:.95rem;color:var(--ink)}
-  .f-check input{width:16px;height:16px;accent-color:var(--ink)}
-  .f-submit{margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .f-msg{font-size:.92rem;margin-top:18px;padding:12px 14px;border:1px solid var(--line)}
-  .f-msg.ok{border-color:var(--ink)}
-  .f-msg.err{border-color:#b00;color:#b00}
-  .f-note{font-size:.8rem;color:var(--faint);margin-top:20px;line-height:1.5}
+  .close:hover{color:var(--accent)}
 
   @media(max-width:640px){
     .wrap{padding:0 20px}
     .grid{gap:28px 18px;grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
     .sheet{flex-direction:column;gap:26px;text-align:center;overflow-y:auto;max-height:88vh}
     .sheet-cover{flex-basis:auto;width:190px}
-    .si-meta .r,.si-act,.si-pret{justify-content:center}
-    .f-grid{grid-template-columns:1fr}
+    .si-meta .r,.si-act{justify-content:center}
   }
 </style>
 </head>
 <body>
 
-<header class="wrap">
-  <h1 class="title" id="siteTitle">Bibliothèque partagée</h1>
-</header>
+<header class="wrap"><h1 class="title" id="siteTitle">Ettes3inat | التسعينات</h1></header>
 
 <div class="bar">
   <div class="wrap bar-inner">
     <div class="search">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input id="search" type="search" placeholder="Rechercher" aria-label="Rechercher">
+      <input id="search" type="search" placeholder="Rechercher une archive" aria-label="Rechercher">
     </div>
     <select id="f-type" aria-label="Type"></select>
     <select id="f-domaine" aria-label="Domaine"></select>
-    <select id="f-genre" aria-label="Genre"></select>
+    <select id="f-pays" aria-label="Pays"></select>
     <select id="f-auteur" aria-label="Auteur"></select>
-    <button class="pret" id="pret"><span class="d"></span>Empruntables</button>
     <span class="count" id="count"></span>
-    <button class="deposit" id="openDeposit">+ Déposer</button>
   </div>
 </div>
 
-<main class="wrap"><div class="grid" id="grid"></div></main>
+<main class="wrap"><div class="grid" id="grid"><div class="empty">Chargement…</div></div></main>
 
-<!-- Fiche détaillée -->
 <div class="overlay" id="overlay">
   <button class="close" id="close" aria-label="Fermer">×</button>
   <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
 </div>
 
-<!-- Formulaire de dépôt -->
-<div class="overlay" id="depositOverlay">
-  <button class="close" id="closeDeposit" aria-label="Fermer">×</button>
-  <div class="form-sheet" role="dialog" aria-modal="true">
-    <h2>Proposer une référence</h2>
-    <p class="sub">Un livre, un article, une ressource à partager avec la bibliothèque.</p>
-    <div class="f-grid">
-      <div class="f-row full">
-        <label for="d-titre">Titre <span class="req">*</span></label>
-        <input id="d-titre" type="text" required>
-      </div>
-      <div class="f-row full">
-        <label for="d-auteur">Auteur</label>
-        <input id="d-auteur" type="text">
-      </div>
-      <div class="f-row">
-        <label for="d-type">Type</label>
-        <input id="d-type" type="text" list="dl-type" placeholder="Livre, Article…">
-      </div>
-      <div class="f-row">
-        <label for="d-annee">Année</label>
-        <input id="d-annee" type="number" inputmode="numeric">
-      </div>
-      <div class="f-row">
-        <label for="d-domaine">Domaine</label>
-        <input id="d-domaine" type="text" list="dl-domaine">
-      </div>
-      <div class="f-row">
-        <label for="d-genre">Genre</label>
-        <input id="d-genre" type="text" list="dl-genre">
-      </div>
-      <div class="f-row full">
-        <label for="d-desc">Description / note</label>
-        <textarea id="d-desc" rows="3"></textarea>
-      </div>
-      <div class="f-row full">
-        <label for="d-lien">Lien (si la ressource est en ligne)</label>
-        <input id="d-lien" type="url" placeholder="https://…">
-      </div>
-      <div class="f-row full">
-        <label class="f-check"><input id="d-pret" type="checkbox"> Je peux prêter cette ressource</label>
-      </div>
-      <div class="f-row full" style="border-top:1px solid var(--line);margin-top:24px;padding-top:8px"></div>
-      <div class="f-row">
-        <label for="d-nom">Votre nom</label>
-        <input id="d-nom" type="text">
-      </div>
-      <div class="f-row">
-        <label for="d-contact">Votre contact</label>
-        <input id="d-contact" type="text" placeholder="e-mail…">
-      </div>
-    </div>
-
-    <datalist id="dl-type"></datalist>
-    <datalist id="dl-domaine"></datalist>
-    <datalist id="dl-genre"></datalist>
-
-    <div class="f-submit">
-      <button class="btn btn-fill" id="sendDeposit">Envoyer la proposition</button>
-    </div>
-    <div id="depositMsg"></div>
-    <p class="f-note">Les propositions sont relues avant d'être ajoutées au catalogue.</p>
-  </div>
-</div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="data.js"></script>
 <script>
 (function(){
   const CFG=window.CONFIG||{};
-  const DATA=(window.RESOURCES||[]).map((r,i)=>({...r,_i:i}));
   const el=id=>document.getElementById(id);
   const grid=el("grid"),overlay=el("overlay"),sheet=el("sheet");
+  let DATA=[];
+  const state={q:"",type:"",domaine:"",pays:"",auteur:""};
 
-  // Titre configurable
   if(CFG.titre){el("siteTitle").textContent=CFG.titre;document.title=CFG.titre}
 
   const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   const escA=s=>esc(s).replace(/"/g,"&quot;");
 
+  function normKey(s){return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim()}
+  const STATUT_OK=["valide","validee","ok","oui","publie","accepte","approuve","x","true","1","y","yes","✓"];
+
+  function mapHeaders(headers){
+    const find=(...keys)=>headers.find(h=>{const n=normKey(h);return keys.some(k=>n.includes(k))});
+    return {
+      titre:find("titre","title","archive"),
+      auteur:find("auteur","author","artiste"),
+      type:find("type","support","format"),
+      domaine:find("domaine","domain","categorie"),
+      pays:find("pays","country","region"),
+      sujets:find("sujet","mot-cle","tag","theme"),
+      annee:find("annee","year","date"),
+      description:find("descri","resume","note","contexte"),
+      couverture:find("couv","image","visuel","photo"),
+      lien:find("lien","url","http","acces"),
+      statut:find("statut","etat","valid","moderation","publie")
+    };
+  }
+  
+  function buildFromMapped(row,m){
+    const g=k=>{const h=m[k];if(h==null)return"";const v=row[h];return typeof v==="string"?v.trim():(v==null?"":v)};
+    const titre=g("titre");if(!titre)return null;
+    return {
+      titre,auteur:g("auteur"),type:g("type"),domaine:g("domaine"),pays:g("pays"),
+      sujets:g("sujets")?String(g("sujets")).split(/[;,]/).map(s=>s.trim()).filter(Boolean):[],
+      annee:g("annee")?(parseInt(g("annee"),10)||""):"",
+      description:g("description"),couverture:g("couverture"),lien:g("lien"),
+      _statut:normKey(g("statut"))
+    };
+  }
+  
+  function useLocal(){return (window.RESOURCES||[]).map(r=>({...r}))}
+
+  function loadData(done){
+    const url=(CFG.sheetCsvUrl||"").trim();
+    if(!url||typeof Papa==="undefined"){return done(useLocal())}
+    Papa.parse(url,{download:true,header:true,skipEmptyLines:true,
+      complete:res=>{
+        const headers=(res.meta&&res.meta.fields)?res.meta.fields:[];
+        if(!headers.length)return done(useLocal());
+        const m=mapHeaders(headers);
+        const built=(res.data||[]).map(r=>buildFromMapped(r,m)).filter(Boolean);
+        if(!built.length)return done(useLocal());
+        const visible=m.statut?built.filter(r=>STATUT_OK.includes(r._statut)):built;
+        done(visible);
+      },
+      error:()=>{console.warn("Lecture du tableur impossible, données locales utilisées.");done(useLocal())}
+    });
+  }
+
   function uniq(k){const s=new Set();DATA.forEach(r=>{if(r[k])s.add(r[k])});return[...s].sort((a,b)=>a.localeCompare(b,"fr"))}
   function fill(sel,label,vals){sel.innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option value="${escA(v)}">${esc(v)}</option>`).join("")}
-  function fillDatalist(dl,vals){dl.innerHTML=vals.map(v=>`<option value="${escA(v)}">`).join("")}
-
-  fill(el("f-type"),"Type",uniq("type"));
-  fill(el("f-domaine"),"Domaine",uniq("domaine"));
-  fill(el("f-genre"),"Genre",uniq("genre"));
-  fill(el("f-auteur"),"Auteur",uniq("auteur"));
-  fillDatalist(el("dl-type"),uniq("type"));
-  fillDatalist(el("dl-domaine"),uniq("domaine"));
-  fillDatalist(el("dl-genre"),uniq("genre"));
-
-  const state={q:"",type:"",domaine:"",genre:"",auteur:"",pret:false};
 
   function coverInner(r){
     const fb=`<div class="fallback"><div class="ft">${esc(r.titre)}</div>${r.auteur?`<div class="fa">${esc(r.auteur)}</div>`:""}</div>`;
-    if(r.couverture&&r.couverture.trim())
+    if(r.couverture&&String(r.couverture).trim())
       return fb+`<img src="${escA(r.couverture)}" alt="${escA(r.titre)}" loading="lazy" onerror="this.remove()">`;
     return fb;
   }
-
+  
   function itemHtml(r){
-    const meta=[r.domaine,r.genre,r.annee].filter(Boolean).join("  ·  ");
+    const meta=[r.domaine,r.pays,r.annee].filter(Boolean).join("  ·  ");
     return `<article class="item" data-i="${r._i}" tabindex="0" style="animation-delay:${Math.min(r._pos*45,500)}ms">
       <div class="cover">${coverInner(r)}</div>
       <div class="hover">
-        <div class="hv-mark"><span>${r.type?esc(r.type):""}</span>${r.pretable?'<span class="dot">Empruntable</span>':''}</div>
-        <div>
-          <h3 class="hv-title">${esc(r.titre)}</h3>
-          ${r.auteur?`<p class="hv-auth">${esc(r.auteur)}</p>`:""}
-          ${meta?`<p class="hv-meta">${esc(meta)}</p>`:""}
-        </div>
-      </div>
-    </article>`;
+        <div class="hv-mark"><span>${r.type?esc(r.type):""}</span></div>
+        <div><h3 class="hv-title">${esc(r.titre)}</h3>${r.auteur?`<p class="hv-auth">${esc(r.auteur)}</p>`:""}${meta?`<p class="hv-meta">${esc(meta)}</p>`:""}</div>
+      </div></article>`;
   }
-
+  
   function matches(r){
     if(state.type&&r.type!==state.type)return false;
     if(state.domaine&&r.domaine!==state.domaine)return false;
-    if(state.genre&&r.genre!==state.genre)return false;
+    if(state.pays&&r.pays!==state.pays)return false;
     if(state.auteur&&r.auteur!==state.auteur)return false;
-    if(state.pret&&!r.pretable)return false;
-    if(state.q){const h=[r.titre,r.auteur,r.description,(r.sujets||[]).join(" "),r.domaine,r.genre,r.type].filter(Boolean).join(" ").toLowerCase();if(!h.includes(state.q.toLowerCase()))return false}
+    if(state.q){const h=[r.titre,r.auteur,r.description,(r.sujets||[]).join(" "),r.domaine,r.pays,r.type].filter(Boolean).join(" ").toLowerCase();if(!h.includes(state.q.toLowerCase()))return false}
     return true;
   }
-
+  
   function render(){
     const list=DATA.filter(matches);
-    el("count").textContent=list.length?`${list.length} référence${list.length>1?"s":""}`:"";
-    if(!list.length){grid.innerHTML='<div class="empty">Aucune référence ne correspond.</div>';return}
+    el("count").textContent=list.length?`${list.length} archive${list.length>1?"s":""}`:"";
+    if(!list.length){grid.innerHTML='<div class="empty">Aucune archive correspondante.</div>';return}
     list.forEach((r,p)=>r._pos=p);
     grid.innerHTML=list.map(itemHtml).join("");
   }
 
-  function contactBtn(r){
-    if(!r.contact)return"";
-    const c=r.contact.trim();
-    const mail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c),url=/^https?:\/\//i.test(c);
-    const label=r.pretable?"Demander à emprunter":"Prendre contact";
-    if(mail){const s=encodeURIComponent((r.pretable?"Demande de prêt : ":"Au sujet de : ")+r.titre);return `<a class="btn btn-fill" href="mailto:${escA(c)}?subject=${s}">${label}</a>`}
-    if(url)return `<a class="btn btn-fill" href="${escA(c)}" target="_blank" rel="noopener">${label}</a>`;
-    return `<span class="btn btn-line" style="cursor:default">${esc(c)}</span>`;
-  }
-
   function openSheet(r){
-    const rows=[r.annee&&["Année",r.annee],r.domaine&&["Domaine",r.domaine],r.genre&&["Genre",r.genre],(r.sujets&&r.sujets.length)&&["Sujets",r.sujets.join(", ")]]
+    const rows=[r.annee&&["Année",r.annee],r.domaine&&["Domaine",r.domaine],r.pays&&["Pays",r.pays],(r.sujets&&r.sujets.length)&&["Sujets",r.sujets.join(", ")]]
       .filter(Boolean).map(([k,v])=>`<div class="r"><span class="k">${k}</span><span class="v">${esc(String(v))}</span></div>`).join("");
-    const pret=r.pretable?`<div class="si-pret"><span class="d"></span>Disponible au prêt</div>`:`<div class="si-pret no"><span class="d"></span>Consultation uniquement</div>`;
-    const consult=r.lien?`<a class="btn btn-line" href="${escA(r.lien)}" target="_blank" rel="noopener">Consulter</a>`:"";
+    const consult=r.lien?`<a class="btn btn-fill" href="${escA(r.lien)}" target="_blank" rel="noopener">Consulter l'archive</a>`:"";
     sheet.innerHTML=`
       <div class="sheet-cover"><div class="cover">${coverInner(r)}</div></div>
       <div class="sheet-info">
@@ -325,80 +234,34 @@
         ${r.auteur?`<p class="si-auth">${esc(r.auteur)}</p>`:""}
         ${rows?`<div class="si-meta">${rows}</div>`:""}
         ${r.description?`<p class="si-desc">${esc(r.description)}</p>`:""}
-        ${pret}
-        ${(contactBtn(r)||consult)?`<div class="si-act">${contactBtn(r)}${consult}</div>`:""}
+        ${consult?`<div class="si-act">${consult}</div>`:""}
       </div>`;
     overlay.classList.add("open");document.body.style.overflow="hidden";
   }
+  
   function closeSheet(){overlay.classList.remove("open");document.body.style.overflow=""}
 
   grid.addEventListener("click",e=>{const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])});
   grid.addEventListener("keydown",e=>{if(e.key==="Enter"){const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])}});
   el("close").addEventListener("click",closeSheet);
   overlay.addEventListener("click",e=>{if(e.target===overlay)closeSheet()});
-
   el("search").addEventListener("input",e=>{state.q=e.target.value;render()});
   el("f-type").addEventListener("change",e=>{state.type=e.target.value;render()});
   el("f-domaine").addEventListener("change",e=>{state.domaine=e.target.value;render()});
-  el("f-genre").addEventListener("change",e=>{state.genre=e.target.value;render()});
+  el("f-pays").addEventListener("change",e=>{state.pays=e.target.value;render()});
   el("f-auteur").addEventListener("change",e=>{state.auteur=e.target.value;render()});
-  el("pret").addEventListener("click",function(){state.pret=!state.pret;this.classList.toggle("on",state.pret);render()});
 
-  /* ---------- Formulaire de dépôt ---------- */
-  const depOverlay=el("depositOverlay"),depMsg=el("depositMsg");
-  function openDeposit(){depOverlay.classList.add("open");document.body.style.overflow="hidden";el("d-titre").focus()}
-  function closeDeposit(){depOverlay.classList.remove("open");document.body.style.overflow=""}
-  el("openDeposit").addEventListener("click",openDeposit);
-  el("closeDeposit").addEventListener("click",closeDeposit);
-  depOverlay.addEventListener("click",e=>{if(e.target===depOverlay)closeDeposit()});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet()}});
 
-  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet();closeDeposit()}});
-
-  function showMsg(txt,kind){depMsg.innerHTML=`<div class="f-msg ${kind}">${esc(txt)}</div>`}
-
-  el("sendDeposit").addEventListener("click",async function(){
-    const v=id=>el(id).value.trim();
-    const titre=v("d-titre");
-    if(!titre){showMsg("Le titre est requis.","err");el("d-titre").focus();return}
-    const email=(CFG.emailDepot||"").trim();
-    const fields={
-      "Titre":titre,
-      "Auteur":v("d-auteur"),
-      "Type":v("d-type"),
-      "Domaine":v("d-domaine"),
-      "Genre":v("d-genre"),
-      "Année":v("d-annee"),
-      "Description":v("d-desc"),
-      "Lien":v("d-lien"),
-      "Empruntable":el("d-pret").checked?"Oui":"Non",
-      "Proposé par":v("d-nom"),
-      "Contact":v("d-contact")
-    };
-
-    if(CFG.envoiAuto && email && email.indexOf("exemple.fr")===-1){
-      this.disabled=true;showMsg("Envoi en cours…","ok");
-      try{
-        const res=await fetch("https://formsubmit.co/ajax/"+encodeURIComponent(email),{
-          method:"POST",
-          headers:{"Content-Type":"application/json","Accept":"application/json"},
-          body:JSON.stringify({_subject:"Proposition de dépôt : "+titre,_captcha:"false",_template:"table",...fields})
-        });
-        if(!res.ok)throw new Error();
-        showMsg("Merci — votre proposition a bien été envoyée.","ok");
-        document.querySelectorAll(".form-sheet input,.form-sheet textarea").forEach(i=>{i.type==="checkbox"?i.checked=false:i.value=""});
-      }catch(err){
-        showMsg("L'envoi a échoué. Vous pouvez écrire directement à "+email+".","err");
-      }finally{this.disabled=false}
-    }else{
-      // Mode messagerie : ouvre le client mail pré-rempli
-      const dest=(email && email.indexOf("exemple.fr")===-1)?email:"";
-      const body=Object.entries(fields).filter(([k,val])=>val).map(([k,val])=>k+" : "+val).join("\n");
-      window.location.href=`mailto:${dest}?subject=${encodeURIComponent("Proposition de dépôt : "+titre)}&body=${encodeURIComponent(body)}`;
-      showMsg("Votre logiciel de messagerie va s'ouvrir avec la proposition pré-remplie.","ok");
-    }
+  /* ---------- Démarrage ---------- */
+  loadData(rows=>{
+    DATA=rows.map((r,i)=>({...r,_i:i}));
+    fill(el("f-type"),"Type",uniq("type"));
+    fill(el("f-domaine"),"Domaine",uniq("domaine"));
+    fill(el("f-pays"),"Pays",uniq("pays"));
+    fill(el("f-auteur"),"Auteur",uniq("auteur"));
+    render();
   });
-
-  render();
 })();
 </script>
 </body>
