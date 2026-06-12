@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ettes3inat | التسعينات</title>
+<title>Ettes3inat | التسعينat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Couleurs identité Ettes3inat */
-    --bg: #131b3b;        /* Fond bleu nuit */
-    --ink: #fdf5d3;       /* Texte crème/jaune pâle */
-    --accent: #f58426;    /* Orange vif */
-    --soft: #9aa4cd;      /* Texte secondaire / gris bleuté */
-    --faint: #2a355c;     /* Bordures et fonds légers */
-    --line: #1e284d;      /* Lignes de séparation */
-    --over: rgba(19, 27, 59, 0.98); /* Fond semi-transparent */
-    --serif: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* Direction Artistique : Noir et Blanc (Mode Sombre) */
+    --bg: #000000;         /* Fond pur noir */
+    --ink: #FFFFFF;        /* Texte pur blanc */
+    --soft: #A0A0A0;       /* Gris moyen pour textes secondaires */
+    --faint: #333333;      /* Gris foncé pour bordures discrètes */
+    --line: #222222;       /* Gris très foncé pour lignes de séparation */
+    --over: rgba(0,0,0,0.95); /* Overlay noir opaque pour fiches */
+    --serif: "Tinos", "Times New Roman", Times, serif; /* Police similaire conservée */
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -24,7 +24,7 @@
   .wrap{max-width:1320px;margin:0 auto;padding:0 32px}
 
   header{padding:46px 0 0}
-  .title{font-size:.82rem;letter-spacing:.4em;text-transform:uppercase;font-weight:700;margin:0;color:var(--accent);}
+  .title{font-size:1.1rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700;margin:0; text-align: center; color: var(--ink);}
 
   .bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);margin-top:30px}
   .bar-inner{display:flex;flex-wrap:wrap;align-items:center;gap:8px 26px;padding:15px 0}
@@ -32,43 +32,48 @@
   .search svg{width:15px;height:15px;stroke:var(--soft);position:absolute;left:0;pointer-events:none}
   .search input{width:100%;border:none;background:none;font-family:inherit;font-size:1rem;color:var(--ink);padding:6px 0 6px 24px;border-bottom:1px solid transparent}
   .search input::placeholder{color:var(--soft)}
-  .search input:focus{outline:none;border-bottom-color:var(--accent)}
+  .search input:focus{outline:none;border-bottom-color:var(--ink)}
   
-  select{appearance:none;border:none;background:none;font-family:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);padding:6px 16px 6px 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none' stroke='%239aa4cd' stroke-width='1.6'%3E%3Cpath d='M1 3l3.5 3.5L8 3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
+  /* Selecteurs en N&B */
+  select{appearance:none;border:none;background:none;font-family:inherit;cursor:pointer;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);padding:6px 16px 6px 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none' stroke='%23A0A0A0' stroke-width='1.6'%3E%3Cpath d='M1 3l3.5 3.5L8 3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
   select:focus{outline:none;color:var(--ink)}select:hover{color:var(--ink)}
   
-  .count{margin-left:auto;font-size:.78rem;letter-spacing:.08em;color:var(--soft);white-space:nowrap}
+  .count{margin-left:auto;font-size:.78rem;letter-spacing:.08em;color:var(--faint);white-space:nowrap}
 
   main{padding:40px 0 90px}
   .grid{display:grid;gap:40px 30px;grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
   .item{position:relative;cursor:pointer;opacity:0;animation:fade .6s forwards}
   @keyframes fade{to{opacity:1}}
-  .cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--faint);box-shadow:0 1px 2px rgba(0,0,0,.15);transition:box-shadow .3s,transform .3s cubic-bezier(.2,.7,.3,1)}
-  .item:hover .cover{box-shadow:0 18px 38px -16px rgba(0,0,0,.6);transform:translateY(-3px)}
+  
+  /* Grille N&B */
+  .cover{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--faint);box-shadow:0 1px 2px rgba(255,255,255,.05);transition:box-shadow .3s,transform .3s cubic-bezier(.2,.7,.3,1)}
+  .item:hover .cover{box-shadow:0 18px 38px -16px rgba(255,255,255,.1);transform:translateY(-3px)}
   .cover img{width:100%;height:100%;object-fit:cover;display:block}
   .fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 18px;background:var(--faint)}
-  .fallback::after{content:"";position:absolute;inset:9px;border:1px solid var(--line)}
+  .fallback::after{content:"";position:absolute;inset:9px;border:1px solid rgba(255,255,255,.1)}
   .fallback .ft{font-size:1.05rem;font-weight:700;line-height:1.22;color:var(--ink)}
   .fallback .fa{margin-top:9px;font-size:.85rem;font-style:italic;color:var(--soft)}
 
-  .hover{position:absolute;inset:0;background:var(--over);color:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;opacity:0;transition:opacity .28s}
+  /* Hover N&B */
+  .hover{position:absolute;inset:0;background:var(--over);color:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 166px;padding:18px 16px;opacity:0;transition:opacity .28s}
   .item:hover .hover{opacity:1}
-  .hv-mark{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+  .hv-mark{position:absolute;top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
   .hv-title{font-size:1.22rem;font-weight:700;line-height:1.15;margin:0}
-  .hv-auth{font-size:.92rem;font-style:italic;color:var(--soft);margin:5px 0 0}
-  .hv-meta{font-size:.74rem;letter-spacing:.03em;color:var(--soft);margin:11px 0 0}
+  .hv-auth{font-size:.92rem;font-style:italic;color:rgba(255,255,255,.8);margin:5px 0 0}
+  .hv-meta{font-size:.74rem;letter-spacing:.03em;color:rgba(255,255,255,.5);margin:11px 0 0}
 
   .empty{grid-column:1/-1;text-align:center;padding:90px 0;color:var(--soft);font-size:1rem}
 
-  .overlay{position:fixed;inset:0;background:var(--over);display:none;align-items:center;justify-content:center;z-index:60;padding:36px}
+  /* Overlay Fiche N&B */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center;z-index:60;padding:36px}
   .overlay.open{display:flex;animation:ov .25s}
   @keyframes ov{from{opacity:0}to{opacity:1}}
   .sheet{display:flex;gap:42px;max-width:860px;width:100%;align-items:center;animation:up .32s cubic-bezier(.2,.7,.3,1)}
   @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .sheet-cover{flex:0 0 270px}
-  .sheet-cover .cover{aspect-ratio:2/3;box-shadow:0 24px 60px -24px rgba(0,0,0,.8)}
+  .sheet-cover .cover{aspect-ratio:2/3;box-shadow:0 24px 60px -24px rgba(255,255,255,.1)}
   .sheet-info{flex:1 1 280px;max-width:380px}
-  .si-type{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .si-type{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
   .si-title{font-size:1.95rem;font-weight:700;line-height:1.1;margin:0;color:var(--ink)}
   .si-auth{font-style:italic;color:var(--soft);font-size:1.1rem;margin:8px 0 0}
   .si-meta{margin:22px 0 0;border-top:1px solid var(--line);padding-top:18px;font-size:.9rem}
@@ -77,13 +82,13 @@
   .si-meta .v{color:var(--ink)}
   .si-desc{margin:18px 0 0;color:var(--ink);font-size:1rem;line-height:1.6}
   
+  /* Boutons N&B */
   .si-act{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}
-  .btn{font-family:inherit;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:12px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:.2s;border:1px solid var(--accent)}
-  .btn-fill{background:var(--accent);color:var(--bg)}
-  .btn-fill:hover{background:#e0731c; border-color:#e0731c}
+  .btn{font-family:inherit;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:12px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:.2s;border:1px solid var(--ink)}
+  .btn-fill{background:var(--ink);color:var(--bg)}.btn-fill:hover{background:var(--soft);border-color:var(--soft)}
   
   .close{position:fixed;top:22px;right:28px;width:38px;height:38px;border:none;background:none;cursor:pointer;font-size:28px;color:var(--ink);line-height:1;z-index:70}
-  .close:hover{color:var(--accent)}
+  .close:hover{color:var(--soft)}
 
   @media(max-width:640px){
     .wrap{padding:0 20px}
@@ -102,7 +107,7 @@
   <div class="wrap bar-inner">
     <div class="search">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input id="search" type="search" placeholder="Rechercher une archive" aria-label="Rechercher">
+      <input id="search" type="search" placeholder="Rechercher" aria-label="Rechercher">
     </div>
     <select id="f-type" aria-label="Type"></select>
     <select id="f-domaine" aria-label="Domaine"></select>
@@ -134,17 +139,20 @@
   const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   const escA=s=>esc(s).replace(/"/g,"&quot;");
 
+  /* ---------- Chargement des données ---------- */
   function normKey(s){return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim()}
+  // Valeurs de la colonne "statut" considérées comme PUBLIÉES (insensible aux accents/casse).
   const STATUT_OK=["valide","validee","ok","oui","publie","accepte","approuve","x","true","1","y","yes","✓"];
 
+  // Repère, parmi les en-têtes du tableur, la colonne de chaque champ.
   function mapHeaders(headers){
     const find=(...keys)=>headers.find(h=>{const n=normKey(h);return keys.some(k=>n.includes(k))});
     return {
-      titre:find("titre","title","archive"),
-      auteur:find("auteur","author","artiste"),
+      titre:find("titre","title","ouvrage"),
+      auteur:find("auteur","author"),
       type:find("type","support","format"),
       domaine:find("domaine","domain","categorie"),
-      pays:find("pays","country","region"),
+      pays:find("pays","country"), // Filtre Genre remplacé par Pays
       sujets:find("sujet","mot-cle","tag","theme"),
       annee:find("annee","year","date"),
       description:find("descri","resume","note","contexte"),
@@ -153,7 +161,6 @@
       statut:find("statut","etat","valid","moderation","publie")
     };
   }
-  
   function buildFromMapped(row,m){
     const g=k=>{const h=m[k];if(h==null)return"";const v=row[h];return typeof v==="string"?v.trim():(v==null?"":v)};
     const titre=g("titre");if(!titre)return null;
@@ -161,7 +168,8 @@
       titre,auteur:g("auteur"),type:g("type"),domaine:g("domaine"),pays:g("pays"),
       sujets:g("sujets")?String(g("sujets")).split(/[;,]/).map(s=>s.trim()).filter(Boolean):[],
       annee:g("annee")?(parseInt(g("annee"),10)||""):"",
-      description:g("description"),couverture:g("couverture"),lien:g("lien"),
+      description:g("description"),couverture:g("couverture"),
+      lien:g("lien"),
       _statut:normKey(g("statut"))
     };
   }
@@ -178,6 +186,7 @@
         const m=mapHeaders(headers);
         const built=(res.data||[]).map(r=>buildFromMapped(r,m)).filter(Boolean);
         if(!built.length)return done(useLocal());
+        // Si une colonne "statut" existe, on n'affiche que les lignes validées.
         const visible=m.statut?built.filter(r=>STATUT_OK.includes(r._statut)):built;
         done(visible);
       },
@@ -185,6 +194,7 @@
     });
   }
 
+  /* ---------- Rendu ---------- */
   function uniq(k){const s=new Set();DATA.forEach(r=>{if(r[k])s.add(r[k])});return[...s].sort((a,b)=>a.localeCompare(b,"fr"))}
   function fill(sel,label,vals){sel.innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option value="${escA(v)}">${esc(v)}</option>`).join("")}
 
@@ -194,7 +204,6 @@
       return fb+`<img src="${escA(r.couverture)}" alt="${escA(r.titre)}" loading="lazy" onerror="this.remove()">`;
     return fb;
   }
-  
   function itemHtml(r){
     const meta=[r.domaine,r.pays,r.annee].filter(Boolean).join("  ·  ");
     return `<article class="item" data-i="${r._i}" tabindex="0" style="animation-delay:${Math.min(r._pos*45,500)}ms">
@@ -204,7 +213,6 @@
         <div><h3 class="hv-title">${esc(r.titre)}</h3>${r.auteur?`<p class="hv-auth">${esc(r.auteur)}</p>`:""}${meta?`<p class="hv-meta">${esc(meta)}</p>`:""}</div>
       </div></article>`;
   }
-  
   function matches(r){
     if(state.type&&r.type!==state.type)return false;
     if(state.domaine&&r.domaine!==state.domaine)return false;
@@ -213,7 +221,6 @@
     if(state.q){const h=[r.titre,r.auteur,r.description,(r.sujets||[]).join(" "),r.domaine,r.pays,r.type].filter(Boolean).join(" ").toLowerCase();if(!h.includes(state.q.toLowerCase()))return false}
     return true;
   }
-  
   function render(){
     const list=DATA.filter(matches);
     el("count").textContent=list.length?`${list.length} archive${list.length>1?"s":""}`:"";
@@ -225,7 +232,7 @@
   function openSheet(r){
     const rows=[r.annee&&["Année",r.annee],r.domaine&&["Domaine",r.domaine],r.pays&&["Pays",r.pays],(r.sujets&&r.sujets.length)&&["Sujets",r.sujets.join(", ")]]
       .filter(Boolean).map(([k,v])=>`<div class="r"><span class="k">${k}</span><span class="v">${esc(String(v))}</span></div>`).join("");
-    const consult=r.lien?`<a class="btn btn-fill" href="${escA(r.lien)}" target="_blank" rel="noopener">Consulter l'archive</a>`:"";
+    const consult=r.lien?`<a class="btn btn-fill" href="${escA(r.lien)}" target="_blank" rel="noopener">Consulter</a>`:"";
     sheet.innerHTML=`
       <div class="sheet-cover"><div class="cover">${coverInner(r)}</div></div>
       <div class="sheet-info">
@@ -238,17 +245,17 @@
       </div>`;
     overlay.classList.add("open");document.body.style.overflow="hidden";
   }
-  
   function closeSheet(){overlay.classList.remove("open");document.body.style.overflow=""}
 
   grid.addEventListener("click",e=>{const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])});
   grid.addEventListener("keydown",e=>{if(e.key==="Enter"){const i=e.target.closest(".item");if(i)openSheet(DATA[+i.dataset.i])}});
   el("close").addEventListener("click",closeSheet);
   overlay.addEventListener("click",e=>{if(e.target===overlay)closeSheet()});
+  
   el("search").addEventListener("input",e=>{state.q=e.target.value;render()});
   el("f-type").addEventListener("change",e=>{state.type=e.target.value;render()});
   el("f-domaine").addEventListener("change",e=>{state.domaine=e.target.value;render()});
-  el("f-pays").addEventListener("change",e=>{state.pays=e.target.value;render()});
+  el("f-pays").addEventListener("change",e=>{state.pays=e.target.value;render()}); // Filtre Pays
   el("f-auteur").addEventListener("change",e=>{state.auteur=e.target.value;render()});
 
   document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeSheet()}});
@@ -258,7 +265,7 @@
     DATA=rows.map((r,i)=>({...r,_i:i}));
     fill(el("f-type"),"Type",uniq("type"));
     fill(el("f-domaine"),"Domaine",uniq("domaine"));
-    fill(el("f-pays"),"Pays",uniq("pays"));
+    fill(el("f-pays"),"Pays",uniq("pays")); // Filtre Pays
     fill(el("f-auteur"),"Auteur",uniq("auteur"));
     render();
   });
